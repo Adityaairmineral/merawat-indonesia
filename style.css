@@ -7,15 +7,9 @@
   --title-color: #202020;
   --desc-color: #606060;
 
-<<<<<<< HEAD
-body{
-    background-color: #FFF9F9 !important;
-  }
-=======
   /* Tipografi */
   --font-family-title: 'Poppins', sans-serif;
   --font-family-desc: 'Poppins', sans-serif;
->>>>>>> 000d65278115e196ba501c27a45d5c0a5d9732bc
 
   /* Ukuran Font */
   --font-size-title: 18px;
@@ -349,32 +343,9 @@ button:hover {
   width: 60px;
 }
 
-<<<<<<< HEAD
-.slide-avatar a{
-    text-align: center;
-    text-decoration: none;
-}
-  
-
-.kampanye .thumbnail{
-    position: relative;
-}
-.kampanye img{
-border-radius: 5px;
-}
-.kampanye .prioritas{
-    position: absolute;
-    top: 6px;
-    left: 6px;
-}
-.kampanye .card{
-    border: none;
-    width: 17rem;
-=======
 .slide-avatar a {
   text-align: center;
   text-decoration: none;
->>>>>>> 000d65278115e196ba501c27a45d5c0a5d9732bc
 }
 
 
