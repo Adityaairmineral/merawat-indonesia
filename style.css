@@ -392,6 +392,7 @@ button:hover {
   justify-content: space-around;
   width: 100%;
   padding: 10px;
+  align-items: center;
 }
 
 .footer .main-menu a {
