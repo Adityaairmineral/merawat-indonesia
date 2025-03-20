@@ -93,6 +93,43 @@
         padding: 10px;
       }
 
+      .accordion-button::after {
+        display: none;
+      }
+
+      .circle-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ff4747;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .accordion-item {
+        border-radius: 12px;
+        margin-bottom: 10px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .button {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #ff4848;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 500;
+      }
+
+      .button:hover {
+        background-color: #e43939;
+        color: white;
+      }
+
       /* Responsive styles */
       @media (max-width: 480px) {
         /* Card Kabar Pencairan adjustments */
@@ -152,32 +189,46 @@
 
         <!-- Main Content Container -->
         <div class="container mt-4 flex-grow-1">
-          <!-- Card Kabar Pencairan - Now using individual cards with margins -->
-          <div class="card mb-4 rounded shadow-sm mx-2">
-            <div class="card-body">
-              <div
-                class="pencairan-item d-flex align-items-center justify-content-between p-2"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                    class="pencairan-number rounded-circle d-flex align-items-center justify-content-center me-3"
+          <div class="tab-content kabar-pencairan">
+            <div class="accordion" id="kabarPencairanAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed d-flex justify-content-between align-items-center"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
                   >
-                    <span>1</span>
-                  </div>
-                  <div>
-                    <p class="text-muted mb-0" style="font-size: 14px">
-                      30 Januari 2025
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="circle-number">1</div>
+                      <div>
+                        <div class="text-muted small mb-1">30 Januari 2025</div>
+                        <div class="fw-bold text-danger">
+                          Pencairan Dana Rp 500.000
+                        </div>
+                      </div>
+                    </div>
+                    <i
+                      class="fa-solid fa-chevron-down ms-auto circle-dropdown"
+                    ></i>
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#kabarPencairanAccordion"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      Ke rekening BNI Syariah *** **** **** **** 8052 a/n -
+                      PERWAKILAN YAYASAN SOS DESA
                     </p>
-                    <h6 class="mb-0 mt-1" style="color: #ff4848">
-                      Pencairan Dana Rp 500.000
-                    </h6>
+                    <a href="" class="button my-3 d-block text-center"
+                      ><i class="fa-solid fa-download"></i> &nbsp; Laporan
+                      Penggunaan Dana</a
+                    >
                   </div>
                 </div>
-                <img
-                  src="assets/img/icon/verify.svg"
-                  alt="Verified"
-                  class="pencairan-verify"
-                />
               </div>
             </div>
           </div>
@@ -194,6 +245,37 @@
       </div>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".tab-button").click(function () {
+          // Hapus kelas aktif dari semua tombol
+          $(".tab-button")
+            .removeClass("btn-primary")
+            .addClass("btn-outline-primary");
+          $(this).removeClass("btn-outline-primary").addClass("btn-primary");
+
+          // Sembunyikan semua konten
+          $(".tab-content").addClass("d-none");
+
+          // Tampilkan konten sesuai tombol yang diklik
+          const target = $(this).data("target");
+          $("." + target).removeClass("d-none");
+        });
+      });
+    </script>
+
+    <script>
+      // Toggle icon on accordion collapse
+      document.querySelectorAll(".accordion-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const icon = button.querySelector("i");
+          icon.classList.toggle("fa-chevron-up");
+          icon.classList.toggle("fa-chevron-down");
+        });
+      });
+    </script>
   </body>
 </html>

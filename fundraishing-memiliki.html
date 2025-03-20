@@ -117,12 +117,42 @@
         width: fit-content;
       }
 
-      .input-field {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+      /* Form-floating styles - UPDATED */
+      .form-floating select.form-select,
+      .form-floating > .form-control {
+        padding-left: 21px;
+        height: calc(3.5rem + 2px);
+        padding-top: 1.625rem;
+        padding-bottom: 0.625rem;
+      }
+
+      .form-floating > label {
+        padding-left: 21px;
+        height: auto;
+        transform-origin: 0 0;
+        transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+        padding-top: 0.75rem;
+      }
+
+      /* Adjust all form-floating labels the same way */
+      .form-floating > .form-control:not(:placeholder-shown) ~ label,
+      .form-floating > .form-select ~ label,
+      .form-floating > .form-control:focus ~ label {
+        opacity: 0.65;
+        transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+      }
+
+      /* Remove the custom bank-select label style that was causing misalignment */
+      .form-floating #bank-select + label {
+        margin-left: 0; /* Remove the extra margin that was creating the misalignment */
+      }
+
+      /* Ensure all labels have the same position when active */
+      .form-floating > .form-control:focus ~ label,
+      .form-floating > .form-control:not(:placeholder-shown) ~ label,
+      .form-floating > .form-select ~ label {
+        color: var(--second-color);
+        padding-top: 0.75rem;
       }
 
       .info {
@@ -131,6 +161,8 @@
         background: var(--primary-light);
         padding: 10px;
         border-radius: 5px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
       }
 
       .btn-submit {
@@ -178,6 +210,30 @@
         object-fit: cover;
       }
 
+      /* Update the red-box class to remove border and use the second-color */
+      .red-box {
+        border: none; /* Remove the border */
+        padding: 8px 12px;
+        border-radius: 5px;
+        background-color: var(
+          --second-color
+        ); /* Use second-color variable instead of light red */
+      }
+
+      .saldo.red-box {
+        background: rgba(
+          255,
+          71,
+          71,
+          0.1
+        ); /* Use second-color with 10% opacity */
+        width: auto;
+        display: inline-block;
+        color: var(--second-color); /* Change text color back to second-color */
+        text-align: left;
+        margin-left: 0;
+      }
+
       @media (max-width: 480px) {
         .donasi-header {
           font-size: 11px;
@@ -201,6 +257,14 @@
         .fundraising-section .button {
           font-size: 12px;
           padding: 6px 12px;
+        }
+        .form-floating select.form-select,
+        .form-floating > .form-control {
+          height: calc(3rem + 2px);
+          font-size: 14px;
+        }
+        .form-floating > label {
+          font-size: 14px;
         }
       }
     </style>
@@ -347,27 +411,37 @@
           <div id="popupCairkanDana" class="popup">
             <div class="popup-content">
               <h3>Pencairan Dana Fundraising</h3>
-              <p class="saldo">Rp 200.000</p>
+              <p class="saldo red-box">Rp 200.000</p>
 
-              <select class="input-field" id="bank-select">
-                <option value="">Pilih Bank</option>
-                <option value="bca">Bank BCA</option>
-                <option value="bri">Bank BRI</option>
-                <option value="mandiri">Bank Mandiri</option>
-              </select>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="bank-select">
+                  <option value="" selected disabled>Pilih Bank</option>
+                  <option value="bca">Bank BCA</option>
+                  <option value="bri">Bank BRI</option>
+                  <option value="mandiri">Bank Mandiri</option>
+                </select>
+                <label for="bank-select">Pilih Opsi</label>
+              </div>
 
-              <input
-                type="text"
-                class="input-field"
-                placeholder="Nama Rekening"
-                id="nama-rekening"
-              />
-              <input
-                type="text"
-                class="input-field"
-                placeholder="Nomor Rekening"
-                id="nomor-rekening"
-              />
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nama-rekening"
+                  placeholder="Nama Rekening"
+                />
+                <label for="nama-rekening">Nama Rekening</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nomor-rekening"
+                  placeholder="Nomor Rekening"
+                />
+                <label for="nomor-rekening">Nomor Rekening</label>
+              </div>
 
               <p class="info">
                 Terimakasih telah berpartisipasi dalam program fundraising,
